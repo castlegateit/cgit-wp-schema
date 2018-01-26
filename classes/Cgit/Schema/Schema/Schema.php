@@ -56,17 +56,6 @@ abstract class Schema
     }
 
     /**
-     * Remove schema value
-     *
-     * @param string $key
-     * @return void
-     */
-    final public function unset($key)
-    {
-        unset($this->schema[$key]);
-    }
-
-    /**
      * Export schema
      *
      * Export the schema data with the correct schema type as an array or as

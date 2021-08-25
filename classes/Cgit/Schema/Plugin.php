@@ -43,10 +43,22 @@ class Plugin
      */
     public function __construct()
     {
-        $this->postTypes = apply_filters('cgit_schema_post_types',
-            $this->postTypes);
-        $this->optionsPages = apply_filters('cgit_schema_options_pages',
-            $this->optionsPages);
+        add_action('acf/init', [$this, 'init']);
+        add_action('admin_notices', [$this, 'showDependencyNotice']);
+    }
+
+    /**
+     * Initialization
+     *
+     * Schema requires Advanced Custom Fields Pro, so this should only be run
+     * when ACF is active.
+     *
+     * @return void
+     */
+    public function init(): void
+    {
+        $this->postTypes = apply_filters('cgit_schema_post_types', $this->postTypes);
+        $this->optionsPages = apply_filters('cgit_schema_options_pages', $this->optionsPages);
 
         // Register post types, options pages, and fields
         $this->registerPostTypes();
@@ -54,6 +66,21 @@ class Plugin
 
         // Edit document head to include linked data
         $editor = new Editor($this);
+    }
+
+    /**
+     * Check for dependencies and show warning message
+     *
+     * @return void
+     */
+    public function showDependencyNotice(): void
+    {
+        if (class_exists('\\ACF')) {
+            return;
+        }
+
+        echo '<div class="notice notice-error"><p><b>Error:</b> Schema plugin requires
+            <a href="https://www.advancedcustomfields.com/pro/">Advanced Custom Fields Pro</a>.</p></div>';
     }
 
     /**

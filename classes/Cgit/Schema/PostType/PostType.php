@@ -29,7 +29,7 @@ abstract class PostType
      * Constructor
      *
      * Register the custom post type and its associated ACF custom fields, but
-     * only if parameters have been set.
+     * only if parameters have been set. This should run on acf/init.
      *
      * @return void
      */
@@ -47,8 +47,8 @@ abstract class PostType
         $this->fieldArgs = apply_filters('cgit_schema_' . $this->name
             . '_custom_field_args', $this->fieldArgs);
 
-        add_action('init', [$this, 'registerPostType']);
-        add_action('acf/init', [$this, 'registerCustomFields']);
+        $this->registerPostType();
+        $this->registerCustomFields();
     }
 
     /**

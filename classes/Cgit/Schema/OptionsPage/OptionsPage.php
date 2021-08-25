@@ -29,7 +29,7 @@ abstract class OptionsPage
      * Constructor
      *
      * Register the ACF options page and its associated custom fields, but only
-     * if parameters have been set.
+     * if parameters have been set. This should run on acf/init.
      *
      * @return void
      */
@@ -44,8 +44,8 @@ abstract class OptionsPage
         $this->fieldArgs = apply_filters(
             'cgit_schema_options_page_custom_field_args', $this->fieldArgs);
 
-        add_action('acf/init', [$this, 'registerOptionsPage']);
-        add_action('acf/init', [$this, 'registerCustomFields']);
+        $this->registerOptionsPage();
+        $this->registerCustomFields();
     }
 
     /**

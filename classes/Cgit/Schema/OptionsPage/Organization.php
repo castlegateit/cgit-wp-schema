@@ -46,7 +46,7 @@ class Organization extends OptionsPage
                 'name' => 'organization_type',
                 'label' => 'Organization type',
                 'type' => 'select',
-                'wrapper' => ['width' => 50],
+                'wrapper' => ['width' => 100],
                 'choices' => [
                     'Organization' => 'Default',
                     'Corporation' => 'Corporation',
@@ -128,14 +128,6 @@ class Organization extends OptionsPage
             ],
 
             [
-                'key' => 'cgit_wp_schema_organization_email',
-                'name' => 'organization_email',
-                'label' => 'Email address',
-                'type' => 'text',
-                'wrapper' => ['width' => 50],
-            ],
-
-            [
                 'key' => 'cgit_wp_schema_organization_tel',
                 'name' => 'organization_tel',
                 'label' => 'Telephone number',
@@ -149,6 +141,35 @@ class Organization extends OptionsPage
                 'label' => 'Fax number',
                 'type' => 'text',
                 'wrapper' => ['width' => 50],
+            ],
+
+            [
+                'key' => 'cgit_wp_schema_organization_email_confirmation',
+                'name' => 'organization_email_confirmation',
+                'label' => 'Include an email address',
+                'message' => 'I understand that email addresses cannot be '
+                    . 'obfuscated in Schema declarations and therefore the '
+                    . 'email address I enter may experience an increase in '
+                    . 'spam emails.',
+                'type' => 'true_false',
+                'wrapper' => ['width' => 50],
+            ],
+
+            [
+                'key' => 'cgit_wp_schema_organization_email',
+                'name' => 'organization_email',
+                'label' => 'Email address',
+                'type' => 'text',
+                'wrapper' => ['width' => 50],
+                'conditional_logic' => [
+                    [
+                        [
+                            'field' => 'cgit_wp_schema_organization_email_confirmation',
+                            'operator' => '==',
+                            'value' => '1',
+                        ],
+                    ],
+                ],
             ],
 
             [

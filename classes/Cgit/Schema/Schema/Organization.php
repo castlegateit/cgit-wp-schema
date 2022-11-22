@@ -27,6 +27,7 @@ class Organization extends Schema
     {
         $this->updateType();
         $this->updateRequiredTextFields();
+        $this->updateEmailFields();
         $this->updateTextFields();
         $this->updateImageFields();
         $this->updateMapFields();
@@ -72,6 +73,23 @@ class Organization extends Schema
     }
 
     /**
+     * Update email fields
+     *
+     * @return void
+     */
+    private function updateEmailFields()
+    {
+        $email_confirm = get_field('organization_email_confirmation', $this->source);
+        $email = get_field('organization_email', $this->source);
+
+        if (!$email_confirm) {
+            $email = '';
+        }
+
+        $this->set('email', $email);
+    }
+
+    /**
      * Update text fields
      *
      * @return void
@@ -81,7 +99,6 @@ class Organization extends Schema
         $fields = [
             'description' => 'description',
             'address' => 'address',
-            'email' => 'email',
             'tel' => 'telephone',
             'fax' => 'faxNumber',
         ];

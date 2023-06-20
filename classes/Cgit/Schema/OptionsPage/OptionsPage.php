@@ -80,6 +80,7 @@ abstract class OptionsPage
             'page_title' => $this->title,
             'menu_slug' => 'cgit-wp-schema-options-' . $name,
             'capability' => 'edit_others_posts',
+            'autoload' => true,
         ];
     }
 

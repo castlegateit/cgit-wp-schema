@@ -1,6 +1,6 @@
 <?php
 
-namespace Cgit\Schema\PostType;
+namespace Castlegate\Schema\PostType;
 
 class JobVacancy extends PostType
 {

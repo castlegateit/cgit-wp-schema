@@ -1,0 +1,8 @@
+{
+    "name": "castlegate/cgit-wp-schema",
+    "autoload": {
+        "psr-4": {
+            "Castlegate\\Schema\\": "classes"
+        }
+    }
+}

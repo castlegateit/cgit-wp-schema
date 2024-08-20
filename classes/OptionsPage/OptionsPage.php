@@ -1,6 +1,6 @@
 <?php
 
-namespace Cgit\Schema\OptionsPage;
+namespace Castlegate\Schema\OptionsPage;
 
 abstract class OptionsPage
 {

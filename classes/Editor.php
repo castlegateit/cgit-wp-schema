@@ -1,6 +1,6 @@
 <?php
 
-namespace Cgit\Schema;
+namespace Castlegate\Schema;
 
 class Editor
 {
@@ -82,7 +82,7 @@ class Editor
     {
         foreach ($this->classes as $class) {
             if (strpos($class, '\\') === false) {
-                $class = '\\Cgit\\Schema\\Schema\\' . $class;
+                $class = '\\Castlegate\\Schema\\Schema\\' . $class;
             }
 
             $this->schemas[] = (new $class)->export();

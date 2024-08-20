@@ -91,7 +91,7 @@ add_filter('cgit_schema_post_types', function ($types) {
 });
 ~~~
 
-The `class` class should be extended from `\Cgit\Schema\PostType\PostType` and defines the post type and its fields. The `schema` class should be extended from `\Cgit\Schema\Schema\Schema` and generates the strucutred data that is output on the page.
+The `class` class should be extended from `\Castlegate\Schema\PostType\PostType` and defines the post type and its fields. The `schema` class should be extended from `\Castlegate\Schema\Schema\Schema` and generates the strucutred data that is output on the page.
 
 ## Validation
 

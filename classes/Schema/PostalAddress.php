@@ -1,6 +1,6 @@
 <?php
 
-namespace Cgit\Schema\Schema;
+namespace Castlegate\Schema\Schema;
 
 class PostalAddress extends Schema
 {

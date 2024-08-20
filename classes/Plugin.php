@@ -1,6 +1,6 @@
 <?php
 
-namespace Cgit\Schema;
+namespace Castlegate\Schema;
 
 class Plugin
 {
@@ -33,29 +33,27 @@ class Plugin
     ];
 
     /**
-     * Constructor
-     *
-     * Register the organization details options page and the custom post types
-     * with their associated custom fields. Modify the document head to include
-     * the relevant schema(s).
+     * Initialization
      *
      * @return void
      */
-    public function __construct()
+    public static function init(): void
     {
-        add_action('acf/init', [$this, 'init']);
-        add_action('admin_notices', [$this, 'showDependencyNotice']);
+        $plugin = new static();
+
+        add_action('acf/init', [$plugin, 'register']);
+        add_action('admin_notices', [$plugin, 'showDependencyNotice']);
     }
 
     /**
-     * Initialization
+     * Register fields, post types, and options pages
      *
      * Schema requires Advanced Custom Fields Pro, so this should only be run
      * when ACF is active.
      *
      * @return void
      */
-    public function init(): void
+    public function register(): void
     {
         $this->postTypes = apply_filters('cgit_schema_post_types', $this->postTypes);
         $this->optionsPages = apply_filters('cgit_schema_options_pages', $this->optionsPages);
@@ -98,7 +96,7 @@ class Plugin
                 continue;
             }
 
-            $namespace = '\\Cgit\\Schema\\PostType';
+            $namespace = '\\Castlegate\\Schema\\PostType';
             $class = $this->sanitizeClassName($value['class'], $namespace);
             $instance = new $class($key);
         }
@@ -115,7 +113,7 @@ class Plugin
     private function registerOptionsPages()
     {
         foreach ($this->optionsPages as $class) {
-            $namespace = '\\Cgit\\Schema\\OptionsPage';
+            $namespace = '\\Castlegate\\Schema\\OptionsPage';
             $class = $this->sanitizeClassName($class, $namespace);
             $instance = new $class;
         }
@@ -136,7 +134,7 @@ class Plugin
         }
 
         if (is_null($namespace)) {
-            $namespace = '\\Cgit\\Schema';
+            $namespace = '\\Castlegate\\Schema';
         }
 
         return rtrim($namespace, '\\') . '\\' . $class;

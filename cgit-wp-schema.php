@@ -1,27 +1,27 @@
 <?php
 
-/*
+/**
+ * Plugin Name:  Castlegate IT WP Schema
+ * Plugin URI:   https://github.com/castlegateit/cgit-wp-schema
+ * Description:  Basic schema.org integration.
+ * Version:      1.2.0
+ * Requires PHP: 8.2
+ * Author:       Castlegate IT
+ * Author URI:   https://www.castlegateit.co.uk/
+ * License:      MIT
+ * Update URI:   https://github.com/castlegateit/cgit-wp-schema
+ */
 
-Plugin Name: Castlegate IT WP Schema
-Plugin URI: https://github.com/castlegateit/cgit-wp-schema
-Description: Basic schema.org integration
-Version: 1.1.3
-Author: Castlegate IT
-Author URI: https://www.castlegateit.co.uk/
-
-Copyright (c) 2018 Castlegate IT. All rights reserved.
-
-*/
+use Castlegate\Schema\Plugin;
 
 if (!defined('ABSPATH')) {
     wp_die('Access denied');
 }
 
-define('CGIT_SCHEMA_PLUGIN', __FILE__);
+define('CGIT_WP_SCHEMA_VERSION', '1.2.0');
+define('CGIT_WP_SCHEMA_PLUGIN_FILE', __FILE__);
+define('CGIT_WP_SCHEMA_PLUGIN_DIR', __DIR__);
 
-require_once __DIR__ . '/classes/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-$plugin = new \Cgit\Schema\Plugin;
-
-do_action('cgit_schema_plugin', $plugin);
-do_action('cgit_schema_loaded');
+Plugin::init();

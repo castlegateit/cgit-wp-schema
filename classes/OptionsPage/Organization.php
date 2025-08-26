@@ -144,32 +144,12 @@ class Organization extends OptionsPage
             ],
 
             [
-                'key' => 'cgit_wp_schema_organization_email_confirmation',
-                'name' => 'organization_email_confirmation',
-                'label' => 'Include an email address',
-                'message' => 'I understand that email addresses cannot be '
-                    . 'obfuscated in Schema declarations and therefore the '
-                    . 'email address I enter may experience an increase in '
-                    . 'spam emails.',
-                'type' => 'true_false',
-                'wrapper' => ['width' => 50],
-            ],
-
-            [
                 'key' => 'cgit_wp_schema_organization_email',
                 'name' => 'organization_email',
                 'label' => 'Email address',
                 'type' => 'text',
                 'wrapper' => ['width' => 50],
-                'conditional_logic' => [
-                    [
-                        [
-                            'field' => 'cgit_wp_schema_organization_email_confirmation',
-                            'operator' => '==',
-                            'value' => '1',
-                        ],
-                    ],
-                ],
+                'instructions' => 'This email address will be visible to search engines and the public internet and may attract spam messages.',
             ],
 
             [

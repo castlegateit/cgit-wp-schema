@@ -17,6 +17,7 @@ class Organization extends OptionsPage
      * @var array
      */
     protected $fieldArgs = [
+        'instruction_placement' => 'field',
         'fields' => [
             [
                 'key' => 'cgit_wp_schema_organization_name',
@@ -46,7 +47,7 @@ class Organization extends OptionsPage
                 'name' => 'organization_type',
                 'label' => 'Organization type',
                 'type' => 'select',
-                'wrapper' => ['width' => 100],
+                'wrapper' => ['width' => 50],
                 'choices' => [
                     'Organization' => 'Default',
                     'Corporation' => 'Corporation',
@@ -128,6 +129,15 @@ class Organization extends OptionsPage
             ],
 
             [
+                'key' => 'cgit_wp_schema_organization_email',
+                'name' => 'organization_email',
+                'label' => 'Email address',
+                'type' => 'text',
+                'wrapper' => ['width' => 50],
+                'instructions' => 'This email address will be visible to search engines and the public internet and may attract spam messages.',
+            ],
+
+            [
                 'key' => 'cgit_wp_schema_organization_tel',
                 'name' => 'organization_tel',
                 'label' => 'Telephone number',
@@ -141,15 +151,6 @@ class Organization extends OptionsPage
                 'label' => 'Fax number',
                 'type' => 'text',
                 'wrapper' => ['width' => 50],
-            ],
-
-            [
-                'key' => 'cgit_wp_schema_organization_email',
-                'name' => 'organization_email',
-                'label' => 'Email address',
-                'type' => 'text',
-                'wrapper' => ['width' => 50],
-                'instructions' => 'This email address will be visible to search engines and the public internet and may attract spam messages.',
             ],
 
             [

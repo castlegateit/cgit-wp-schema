@@ -4,7 +4,7 @@
  * Plugin Name:  Castlegate IT WP Schema
  * Plugin URI:   https://github.com/castlegateit/cgit-wp-schema
  * Description:  Basic schema.org integration.
- * Version:      1.2.0
+ * Version:      1.2.1
  * Requires PHP: 8.2
  * Author:       Castlegate IT
  * Author URI:   https://www.castlegateit.co.uk/

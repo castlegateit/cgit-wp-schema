@@ -140,8 +140,20 @@ class Organization extends Schema
                 continue;
             }
 
+            $image_url = null;
             $schema = new ImageObject;
-            $schema->set('url', $image['url']);
+
+            if (is_numeric($image) && (int) $image > 0) {
+                $image_url = wp_get_attachment_url((int)$image);
+            } elseif (is_array($image) && array_key_exists('url', $image)) {
+                $image_url = $image['url'];
+            }
+
+            if (!$image_url || filter_var($image_url, FILTER_VALIDATE_URL) === false) {
+                continue;
+            }
+
+            $schema->set('url', $image_url);
             $this->set($key, $schema->export());
         }
     }

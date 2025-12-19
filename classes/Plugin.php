@@ -2,7 +2,7 @@
 
 namespace Castlegate\Schema;
 
-class Plugin
+final class Plugin
 {
     /**
      * Post types and schemas
@@ -125,7 +125,7 @@ class Plugin
      * If a class name has been provided without a namespace, add a default
      * namespace to the class name.
      *
-     * @return void
+     * @return string
      */
     private function sanitizeClassName($class, $namespace = null)
     {

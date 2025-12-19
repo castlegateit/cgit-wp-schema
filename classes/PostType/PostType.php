@@ -69,7 +69,7 @@ abstract class PostType
      *
      * @return void
      */
-    final private function generateFieldArgs()
+    private function generateFieldArgs()
     {
         $this->fieldArgs['title'] = $this->typeArgs['labels']['singular_name'];
         $this->fieldArgs['location'] = [

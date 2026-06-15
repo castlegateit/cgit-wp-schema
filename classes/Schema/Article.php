@@ -60,9 +60,34 @@ class Article extends Schema
         ];
 
         if ($logo) {
-            $schema = new ImageObject;
-            $schema->set('url', $logo['url']);
-            $publisher['logo'] = $schema->export();
+            $logo_url = '';
+
+            // The ACF image field may return a variety of data types that need to be
+            // accounted for.
+            if (is_numeric($logo)) {
+                $logo = absint($logo);
+                if ($logo > 0) {
+                    // If an attachment ID is returned, construct a URL using it.
+                    $logo_url = wp_get_attachment_url($logo);
+                }
+            } elseif (
+                is_array($logo) &&
+                array_key_exists('url', $logo) &&
+                filter_var($logo['url'], FILTER_VALIDATE_URL) !== false
+            ) {
+                $logo_url = $logo['url'];
+            } elseif (
+                is_string($logo) &&
+                filter_var($logo, FILTER_VALIDATE_URL) !== false
+            ) {
+                $logo_url = $logo;
+            }
+
+            if ($logo_url) {
+                $schema = new ImageObject;
+                $schema->set('url', $logo_url);
+                $publisher['logo'] = $schema->export();
+            }
         }
 
         $this->set('publisher', $publisher);
